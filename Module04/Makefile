@@ -13,7 +13,10 @@ RESET  = \e[0m
 # **************************************************************************** #
 BUILD_DIR   := build
 CMAKE_FLAGS := -DCMAKE_BUILD_TYPE=Debug
-EXERCISE_DIRS := $(wildcard ex*)
+
+# Exercise directories (explicit list, no wildcards)
+EXERCISES     := 00 01 02
+EXERCISE_DIRS := $(addprefix ex, $(EXERCISES))
 
 # **************************************************************************** #
 #                                 TARGETS                                      #
