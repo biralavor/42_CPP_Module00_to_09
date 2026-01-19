@@ -25,9 +25,9 @@ TEST(MegaphoneTest, SingleArgumentTest) {
 TEST(MegaphoneTest, DoubleArgumentsTest) {
     char* argv[] = {(char*)"./megaphone",
                     (char*)"Forty", (char*)"Two",
-                    nullptr};
+                    NULL};
     int argc = 0;
-    while (argv[argc] != nullptr)
+    while (argv[argc] != NULL)
         argc++;
     std::string result = megaphone(argc, argv);
 
@@ -37,9 +37,9 @@ TEST(MegaphoneTest, DoubleArgumentsTest) {
 TEST(MegaphoneTest, MultipleArgumentsTest) {
     char* argv[] = {(char*)"./megaphone",
                     (char*)"Forty", (char*)"Two", (char*)"is", (char*)"awesome",
-                    nullptr};
+                    NULL};
     int argc = 0;
-    while (argv[argc] != nullptr)
+    while (argv[argc] != NULL)
         argc++;
     
     std::string result = megaphone(argc, argv);
@@ -50,9 +50,9 @@ TEST(MegaphoneTest, MultipleArgumentsTest) {
 TEST(MegaphoneTest, ArgumentsWithNumbersTest) {
     char* argv[] = {(char*)"./megaphone",
                     (char*)"Hi", (char*)"42",
-                    nullptr};
+                    NULL};
     int argc = 0;
-    while (argv[argc] != nullptr)
+    while (argv[argc] != NULL)
         argc++;
     
     std::string result = megaphone(argc, argv);
