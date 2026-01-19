@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/19 16:42:48 by umeneses          #+#    #+#              #
-#    Updated: 2025/08/27 12:26:47 by umeneses         ###   ########.fr        #
+#    Updated: 2025/08/31 18:10:53 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ HEADERS_DIR		:= ./headers/
 #								FILES										   #
 # **************************************************************************** #
 
-NAME			:= $(BIN_DIR)form
+NAME			:= $(BIN_DIR)aform
 SRC_F			+= main.cpp
 SRC_F			+= Bureaucrat.cpp
 SRC_F			+= AForm.cpp

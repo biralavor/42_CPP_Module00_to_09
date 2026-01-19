@@ -1,19 +1,23 @@
-find_package(GTest REQUIRED)
+cmake_minimum_required(VERSION 3.10)
+project(CPP_Module05 VERSION 1.0)
 
-add_executable(Module05Tests
-	TestModule05Ex00.cpp
-)
+# set project-wide properties
+set(CMAKE_CXX_STANDARD 98)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 
-target_link_libraries(Module05Tests PRIVATE
-	GTest::GTest
-	GTest::Main
-	Bureaucrat_lib
-)
+# Enable testing for the whole project
+enable_testing()
 
-include (GoogleTest)
-gtest_discover_tests(Module05Tests)
+# Add exercise subdirectories
+add_subdirectory(ex00)
+add_subdirectory(ex01)
+add_subdirectory(ex02)
+add_subdirectory(ex03)
 
-add_test(
-	NAME Module05_Ex00_Test
-	COMMAND Module05Tests
-)
+# Add tests directory
+add_subdirectory(tests)
+
+# Print test configuration
+message(STATUS "Configuring tests for ${PROJECT_NAME}")
+message(STATUS "Google Test will be used for unit testing")

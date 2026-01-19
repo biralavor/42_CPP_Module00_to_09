@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(CPP_Module05 VERSION 1.0)
+project(CPP_Module06 VERSION 1.0)
 
 # set project-wide properties
 set(CMAKE_CXX_STANDARD 98)
@@ -11,9 +11,8 @@ enable_testing()
 
 # Add exercise subdirectories
 add_subdirectory(ex00)
-add_subdirectory(ex01)
-add_subdirectory(ex02)
-add_subdirectory(ex03)
+# add_subdirectory(ex01)
+# add_subdirectory(ex02)
 
 # Add tests directory
 add_subdirectory(tests)

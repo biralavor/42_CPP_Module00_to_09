@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/19 16:42:48 by umeneses          #+#    #+#              #
-#    Updated: 2025/09/06 15:20:10 by umeneses         ###   ########.fr        #
+#    Updated: 2025/09/06 15:21:29 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ HEADERS_DIR		:= ./headers/
 #								FILES										   #
 # **************************************************************************** #
 
-NAME			:= $(BIN_DIR)intern-coffee-making
+NAME			:= $(BIN_DIR)intern
 SRC_F			+= main.cpp
 SRC_F			+= Bureaucrat.cpp
 SRC_F			+= AForm.cpp
