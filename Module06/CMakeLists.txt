@@ -12,7 +12,7 @@ enable_testing()
 # Add exercise subdirectories
 add_subdirectory(ex00)
 add_subdirectory(ex01)
-# add_subdirectory(ex02)
+add_subdirectory(ex02)
 
 # Add tests directory
 add_subdirectory(tests)
