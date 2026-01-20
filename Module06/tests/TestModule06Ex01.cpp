@@ -20,9 +20,8 @@ static std::string intToString(int value) {
     return ss.str();
 }
 
-// TODO: Uncomment these when you create the header files
-// #include "../ex01/headers/Serializer.hpp"
-// #include "../ex01/headers/Data.hpp"
+#include "../ex01/headers/Serializer.hpp"
+#include "../ex01/headers/Data.hpp"
 
 /*
    IMPLEMENTATION GUIDE:
@@ -51,30 +50,6 @@ static std::string intToString(int value) {
       - The original pointer should be recoverable
 */
 
-// Test Data structure
-// TODO: Replace with your actual Data structure
-struct TestData {
-    int id;
-    std::string name;
-    float value;
-    bool active;
-    
-    TestData() : id(0), name(""), value(0.0f), active(false) {}
-    
-    TestData(int i, std::string n, float v, bool a)
-        : id(i), name(n), value(v), active(a) {}
-    
-    bool operator==(const TestData& other) const {
-        return id == other.id &&
-               name == other.name &&
-               value == other.value &&
-               active == other.active;
-    }
-};
-
-// TODO: Use your actual Data type
-// For now, using TestData as a placeholder
-typedef TestData Data;
 
 class SerializerTest : public ::testing::Test {
 protected:
@@ -95,9 +70,9 @@ protected:
 
 TEST_F(SerializerTest, SerializeReturnsNonZero) {
     // TODO: Uncomment when Serializer is implemented
-    // uintptr_t serialized = Serializer::serialize(testData);
+    uintptr_t serialized = Serializer::serialize(testData);
     
-    // EXPECT_NE(serialized, 0);
+    EXPECT_NE(serialized, 0);
     
     // For now, just a placeholder
     SUCCEED();
@@ -107,11 +82,11 @@ TEST_F(SerializerTest, SerializeDeserializeRoundtrip) {
     // The main test from the subject
     
     // TODO: Uncomment when Serializer is implemented
-    // uintptr_t serialized = Serializer::serialize(testData);
-    // Data* deserialized = Serializer::deserialize(serialized);
+    uintptr_t serialized = Serializer::serialize(testData);
+    Data* deserialized = Serializer::deserialize(serialized);
     
     // The deserialized pointer should equal the original
-    // EXPECT_EQ(deserialized, testData);
+    EXPECT_EQ(deserialized, testData);
     
     SUCCEED();
 }
@@ -120,14 +95,14 @@ TEST_F(SerializerTest, DeserializedDataIsValid) {
     // After deserialization, we should be able to access the data
     
     // TODO: Uncomment when Serializer is implemented
-    // uintptr_t serialized = Serializer::serialize(testData);
-    // Data* deserialized = Serializer::deserialize(serialized);
+    uintptr_t serialized = Serializer::serialize(testData);
+    Data* deserialized = Serializer::deserialize(serialized);
     
     // Check that we can access the data through deserialized pointer
-    // EXPECT_EQ(deserialized->id, 42);
-    // EXPECT_EQ(deserialized->name, "Test");
-    // EXPECT_FLOAT_EQ(deserialized->value, 3.14f);
-    // EXPECT_TRUE(deserialized->active);
+    EXPECT_EQ(deserialized->id, 42);
+    EXPECT_EQ(deserialized->name, "Test");
+    EXPECT_FLOAT_EQ(deserialized->value, 3.14f);
+    EXPECT_TRUE(deserialized->active);
     
     SUCCEED();
 }
@@ -140,23 +115,23 @@ TEST_F(SerializerTest, MultiplSerializations) {
     Data* data3 = new Data(3, "Third", 3.3f, true);
     
     // TODO: Uncomment when Serializer is implemented
-    // uintptr_t s1 = Serializer::serialize(data1);
-    // uintptr_t s2 = Serializer::serialize(data2);
-    // uintptr_t s3 = Serializer::serialize(data3);
+    uintptr_t s1 = Serializer::serialize(data1);
+    uintptr_t s2 = Serializer::serialize(data2);
+    uintptr_t s3 = Serializer::serialize(data3);
     
     // All serialized values should be different
-    // EXPECT_NE(s1, s2);
-    // EXPECT_NE(s2, s3);
-    // EXPECT_NE(s1, s3);
+    EXPECT_NE(s1, s2);
+    EXPECT_NE(s2, s3);
+    EXPECT_NE(s1, s3);
     
     // All should deserialize correctly
-    // Data* d1 = Serializer::deserialize(s1);
-    // Data* d2 = Serializer::deserialize(s2);
-    // Data* d3 = Serializer::deserialize(s3);
+    Data* d1 = Serializer::deserialize(s1);
+    Data* d2 = Serializer::deserialize(s2);
+    Data* d3 = Serializer::deserialize(s3);
     
-    // EXPECT_EQ(d1, data1);
-    // EXPECT_EQ(d2, data2);
-    // EXPECT_EQ(d3, data3);
+    EXPECT_EQ(d1, data1);
+    EXPECT_EQ(d2, data2);
+    EXPECT_EQ(d3, data3);
     
     delete data1;
     delete data2;
@@ -173,12 +148,12 @@ TEST_F(SerializerTest, PointerAddressPreserved) {
     // The memory address should be preserved through serialization
     
     // TODO: Uncomment when Serializer is implemented
-    // void* originalAddress = static_cast<void*>(testData);
-    // uintptr_t serialized = Serializer::serialize(testData);
-    // Data* deserialized = Serializer::deserialize(serialized);
-    // void* deserializedAddress = static_cast<void*>(deserialized);
+    void* originalAddress = static_cast<void*>(testData);
+    uintptr_t serialized = Serializer::serialize(testData);
+    Data* deserialized = Serializer::deserialize(serialized);
+    void* deserializedAddress = static_cast<void*>(deserialized);
     
-    // EXPECT_EQ(originalAddress, deserializedAddress);
+    EXPECT_EQ(originalAddress, deserializedAddress);
     
     SUCCEED();
 }
@@ -187,12 +162,12 @@ TEST_F(SerializerTest, DataContentUnchanged) {
     // The data content should remain unchanged
     
     // TODO: Uncomment when Serializer is implemented
-    // Data original = *testData;
+    Data original = *testData;
     
-    // uintptr_t serialized = Serializer::serialize(testData);
-    // Data* deserialized = Serializer::deserialize(serialized);
+    uintptr_t serialized = Serializer::serialize(testData);
+    Data* deserialized = Serializer::deserialize(serialized);
     
-    // EXPECT_EQ(*deserialized, original);
+    EXPECT_EQ(*deserialized, original);
     
     SUCCEED();
 }
@@ -202,15 +177,15 @@ TEST_F(SerializerTest, ModifyDataAfterSerialization) {
     // (because they point to the same memory)
     
     // TODO: Uncomment when Serializer is implemented
-    // uintptr_t serialized = Serializer::serialize(testData);
+    uintptr_t serialized = Serializer::serialize(testData);
     
-    // testData->id = 999;
-    // testData->name = "Modified";
+    testData->id = 999;
+    testData->name = "Modified";
     
-    // Data* deserialized = Serializer::deserialize(serialized);
+    Data* deserialized = Serializer::deserialize(serialized);
     
-    // EXPECT_EQ(deserialized->id, 999);
-    // EXPECT_EQ(deserialized->name, "Modified");
+    EXPECT_EQ(deserialized->id, 999);
+    EXPECT_EQ(deserialized->name, "Modified");
     
     SUCCEED();
 }
@@ -223,13 +198,13 @@ TEST(SerializerEdgeTest, SerializeNullPointer) {
     // Test serializing a null pointer
     
     // TODO: Uncomment when Serializer is implemented
-    // Data* nullData = NULL;
-    // uintptr_t serialized = Serializer::serialize(nullData);
+    Data* nullData = NULL;
+    uintptr_t serialized = Serializer::serialize(nullData);
     
-    // EXPECT_EQ(serialized, 0);
+    EXPECT_EQ(serialized, 0);
     
-    // Data* deserialized = Serializer::deserialize(serialized);
-    // EXPECT_EQ(deserialized, NULL);
+    Data* deserialized = Serializer::deserialize(serialized);
+    EXPECT_EQ(deserialized, static_cast<Data*>(NULL));
     
     SUCCEED();
 }
@@ -238,9 +213,9 @@ TEST(SerializerEdgeTest, DeserializeZero) {
     // Test deserializing zero (should give null pointer)
     
     // TODO: Uncomment when Serializer is implemented
-    // Data* deserialized = Serializer::deserialize(0);
-    
-    // EXPECT_EQ(deserialized, NULL);
+    Data* deserialized = Serializer::deserialize(0);
+
+    EXPECT_EQ(deserialized, static_cast<Data*>(NULL));
     
     SUCCEED();
 }
@@ -251,11 +226,11 @@ TEST(SerializerEdgeTest, SerializeStackObject) {
     Data stackData(100, "Stack", 9.99f, false);
     
     // TODO: Uncomment when Serializer is implemented
-    // uintptr_t serialized = Serializer::serialize(&stackData);
-    // Data* deserialized = Serializer::deserialize(serialized);
+    uintptr_t serialized = Serializer::serialize(&stackData);
+    Data* deserialized = Serializer::deserialize(serialized);
     
-    // EXPECT_EQ(deserialized, &stackData);
-    // EXPECT_EQ(deserialized->id, 100);
+    EXPECT_EQ(deserialized, &stackData);
+    EXPECT_EQ(deserialized->id, 100);
     
     SUCCEED();
 }
@@ -310,9 +285,10 @@ TEST(SerializerDesignTest, OnlyStaticMethods) {
     // Verify that methods are static by calling without instance
     
     // TODO: Uncomment when Serializer is implemented
-    // Data testData(1, "Test", 1.0f, true);
-    // uintptr_t s = Serializer::serialize(&testData);
-    // Data* d = Serializer::deserialize(s);
+    Data testData(1, "Test", 1.0f, true);
+    uintptr_t s = Serializer::serialize(&testData);
+    Data* d = Serializer::deserialize(s);
+    (void)d;
     
     // If this compiles, methods are static
     SUCCEED();
@@ -361,11 +337,11 @@ TEST(SerializerIntegrationTest, SubjectExample) {
     Data* original = new Data(42, "Subject", 3.14f, true);
     
     // TODO: Uncomment when Serializer is implemented
-    // uintptr_t raw = Serializer::serialize(original);
-    // Data* result = Serializer::deserialize(raw);
+    uintptr_t raw = Serializer::serialize(original);
+    Data* result = Serializer::deserialize(raw);
     
-    // EXPECT_EQ(result, original);
-    // EXPECT_EQ(result->id, 42);
+    EXPECT_EQ(result, original);
+    EXPECT_EQ(result->id, 42);
     
     delete original;
     
@@ -378,15 +354,15 @@ TEST(SerializerIntegrationTest, ChainedSerializations) {
     Data* data = new Data(1, "Chain", 1.0f, true);
     
     // TODO: Uncomment when Serializer is implemented
-    // uintptr_t s1 = Serializer::serialize(data);
-    // Data* d1 = Serializer::deserialize(s1);
+    uintptr_t s1 = Serializer::serialize(data);
+    Data* d1 = Serializer::deserialize(s1);
     
-    // uintptr_t s2 = Serializer::serialize(d1);
-    // Data* d2 = Serializer::deserialize(s2);
+    uintptr_t s2 = Serializer::serialize(d1);
+    Data* d2 = Serializer::deserialize(s2);
     
     // All should point to the same memory
-    // EXPECT_EQ(data, d1);
-    // EXPECT_EQ(d1, d2);
+    EXPECT_EQ(data, d1);
+    EXPECT_EQ(d1, d2);
     
     delete data;
     
@@ -404,13 +380,13 @@ TEST(SerializerIntegrationTest, ArrayOfData) {
     }
     
     // TODO: Uncomment when Serializer is implemented
-    // for (int i = 0; i < SIZE; i++) {
-    //     uintptr_t serialized = Serializer::serialize(&dataArray[i]);
-    //     Data* deserialized = Serializer::deserialize(serialized);
-    //     
-    //     EXPECT_EQ(deserialized, &dataArray[i]);
-    //     EXPECT_EQ(deserialized->id, i);
-    // }
+    for (int i = 0; i < SIZE; i++) {
+        uintptr_t serialized = Serializer::serialize(&dataArray[i]);
+        Data* deserialized = Serializer::deserialize(serialized);
+        
+        EXPECT_EQ(deserialized, &dataArray[i]);
+        EXPECT_EQ(deserialized->id, i);
+    }
     
     delete[] dataArray;
     
@@ -453,10 +429,10 @@ TEST(SerializerBonusTest, PointerToConstData) {
     
     // TODO: Uncomment when Serializer is implemented
     // Should your serialize function accept const Data*?
-    // uintptr_t serialized = Serializer::serialize(const_cast<Data*>(constData));
-    // Data* deserialized = Serializer::deserialize(serialized);
+    uintptr_t serialized = Serializer::serialize(const_cast<Data*>(constData));
+    Data* deserialized = Serializer::deserialize(serialized);
     
-    // EXPECT_EQ(deserialized, constData);
+    EXPECT_EQ(deserialized, constData);
     
     delete constData;
     
