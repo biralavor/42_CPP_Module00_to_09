@@ -13,7 +13,9 @@ RESET  = \e[0m
 # **************************************************************************** #
 BUILD_DIR   := build
 CMAKE_FLAGS := -DCMAKE_BUILD_TYPE=Debug
-EXERCISE_DIRS := $(wildcard ex*)
+
+EXERCISES     := 00 01 02 03
+EXERCISE_DIRS := $(addprefix ex, $(EXERCISES))
 
 # **************************************************************************** #
 #                                 TARGETS                                      #
@@ -37,7 +39,7 @@ configure:
 .PHONY: build_cmake
 build_cmake: configure
 	@printf "$(CYAN)Building with CMake...$(RESET)\n"
-	@cd $(BUILD_DIR) && make
+	@cd $(BUILD_DIR) && make --no-print-directory
 	@printf "$(GREEN)CMake build complete$(RESET)\n"
 
 .PHONY: test
@@ -46,13 +48,37 @@ test: build_cmake
 	@cd $(BUILD_DIR) && ctest --output-on-failure
 	@printf "$(GREEN)Tests completed$(RESET)\n"
 
+.PHONY: test-ex00
+test-ex00: build_cmake
+	@printf "$(CYAN)Running ex00 tests...$(RESET)\n"
+	@cd $(BUILD_DIR) && ./tests/TestModule03Ex00
+	@printf "$(GREEN)ex00 tests completed$(RESET)\n"
+
+.PHONY: test-ex01
+test-ex01: build_cmake
+	@printf "$(CYAN)Running ex01 tests...$(RESET)\n"
+	@cd $(BUILD_DIR) && ./tests/TestModule03Ex01
+	@printf "$(GREEN)ex01 tests completed$(RESET)\n"
+
+.PHONY: test-ex02
+test-ex02: build_cmake
+	@printf "$(CYAN)Running ex02 tests...$(RESET)\n"
+	@cd $(BUILD_DIR) && ./tests/TestModule03Ex02
+	@printf "$(GREEN)ex02 tests completed$(RESET)\n"
+
+.PHONY: test-ex03
+test-ex03: build_cmake
+	@printf "$(CYAN)Running ex03 tests...$(RESET)\n"
+	@cd $(BUILD_DIR) && ./tests/TestModule03Ex03
+	@printf "$(GREEN)ex03 tests completed$(RESET)\n"
+
 .PHONY: clean_cmake
 clean_cmake:
 	@rm -rf $(BUILD_DIR)
 	@printf "$(GREEN)Build directory cleaned$(RESET)\n"
 
 .PHONY: re
-re: clean all
+re: clean_cmake all
 
 # ********************************************* #
 #   INDIVIDUAL EXCERCISE BUILD SYSTEM TARGETS   #
@@ -63,7 +89,7 @@ build_exercises:
 	@printf "$(CYAN)Building individual exercises...$(RESET)\n"
 	@for dir in $(EXERCISE_DIRS); do \
 		if [ -d $$dir ]; then \
-			$(MAKE) -C $$dir; \
+			$(MAKE) -C $$dir --no-print-directory; \
 		fi; \
 	done
 	@printf "$(GREEN)All exercises built successfully!$(RESET)\n"
@@ -73,7 +99,7 @@ clean_exercises:
 	@printf "$(YELLOW)Cleaning individual exercises...$(RESET)\n"
 	@for dir in $(EXERCISE_DIRS); do \
 		if [ -d $$dir ]; then \
-			$(MAKE) -C $$dir clean; \
+			$(MAKE) -C $$dir clean --no-print-directory;  \
 		fi; \
 	done
 	@printf "$(GREEN)Individual exercise cleaned$(RESET)\n"
@@ -83,7 +109,7 @@ fclean_exercises:
 	@printf "$(CYAN)Forcing clean of individual exercise program files...$(RESET)\n"
 	@for dir in $(EXERCISE_DIRS); do \
 		if [ -d $$dir ]; then \
-			$(MAKE) -C $$dir fclean; \
+			$(MAKE) -C $$dir fclean --no-print-directory; \
 		fi; \
 	done
 
@@ -103,8 +129,12 @@ fclean: clean_cmake fclean_exercises
 #                  HELP TARGETS                 #
 # ********************************************* #
 help:
-	@printf "$(CYAN)// Available targets: //$(RESET)"
+	@printf "$(CYAN)// Available targets: //$(RESET)\n"
 	@printf "  $(GREEN)test$(RESET)              - Run all tests (CMake system)\n"
+	@printf "  $(GREEN)test-ex00$(RESET)         - Run ex00 tests only\n"
+	@printf "  $(GREEN)test-ex01$(RESET)         - Run ex01 tests only\n"
+	@printf "  $(GREEN)test-ex02$(RESET)         - Run ex02 tests only\n"
+	@printf "  $(GREEN)test-ex03$(RESET)         - Run ex03 tests only\n"
 	@printf "  $(GREEN)build_cmake$(RESET)       - Build with CMake system\n"
 	@printf "  $(GREEN)build_exercises$(RESET)   - Build individual exercises\n"
 	@printf "  $(GREEN)build_all$(RESET)         - Build with both systems\n"

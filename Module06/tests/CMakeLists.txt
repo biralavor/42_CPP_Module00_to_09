@@ -28,28 +28,25 @@ target_link_libraries(TestModule06Ex00 GTest::gtest_main)
 target_include_directories(TestModule06Ex00 PRIVATE ../ex00/headers)
 
 # Test for ex01 - Serializer
-# TODO: Uncomment when you implement ex01
-# add_executable(
-#   TestModule06Ex01
-#   TestModule06Ex01.cpp
-#   ../ex01/src/Serializer.cpp
-#   ../ex01/src/Data.cpp
-# )
-# target_link_libraries(TestModule06Ex01 GTest::gtest_main)
-# target_include_directories(TestModule06Ex01 PRIVATE ../ex01/headers)
+add_executable(
+  TestModule06Ex01
+  TestModule06Ex01.cpp
+  ../ex01/src/Serializer.cpp
+  ../ex01/src/Data.cpp
+)
+target_link_libraries(TestModule06Ex01 GTest::gtest_main)
+target_include_directories(TestModule06Ex01 PRIVATE ../ex01/headers)
 
 # Test for ex02 - Type Identification
-# TODO: Uncomment when you implement ex02
-# add_executable(
-#   TestModule06Ex02
-#   TestModule06Ex02.cpp
-#   ../ex02/src/Base.cpp
-#   ../ex02/src/identify.cpp
-# )
-# target_link_libraries(TestModule06Ex02 GTest::gtest_main)
-# target_include_directories(TestModule06Ex02 PRIVATE ../ex02/headers)
+add_executable(
+  TestModule06Ex02
+  TestModule06Ex02.cpp
+  ../ex02/src/Base.cpp
+)
+target_link_libraries(TestModule06Ex02 GTest::gtest_main)
+target_include_directories(TestModule06Ex02 PRIVATE ../ex02/headers)
 
 include(GoogleTest)
 gtest_discover_tests(TestModule06Ex00)
-# gtest_discover_tests(TestModule06Ex01)
-# gtest_discover_tests(TestModule06Ex02)
+gtest_discover_tests(TestModule06Ex01)
+gtest_discover_tests(TestModule06Ex02)
