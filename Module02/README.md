@@ -167,11 +167,11 @@ make              # Build exercises + run tests
 
 ### Run Tests
 ```bash
-make test                                    # Run all tests
-cd build && ctest --output-on-failure        # Verbose output
-cd build && ./TestModule02Ex00               # Run specific test
-cd build && ./TestModule02Ex01               # Run ex01 tests
-cd build && ./TestModule02Ex02               # Run ex02 tests
+make test         # Run all tests
+make test-ex00    # Run ex00 tests only
+make test-ex01    # Run ex01 tests only
+make test-ex02    # Run ex02 tests only
+make help         # Show all available targets
 ```
 
 ### Build Individual Exercise
