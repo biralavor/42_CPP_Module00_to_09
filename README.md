@@ -1,7 +1,18 @@
-# CPP Lists -> Modules 0 to 4
+# C++ list Modules (0 to 9) from 42 school - 42 São Paulo campus
+![cpp-list-0to9](https://github.com/user-attachments/assets/04a63315-559b-4bc3-a222-ce8323b7baee "CPP Lists 0 to 9")
 
-| ![cpp-list-0to4](https://github.com/user-attachments/assets/04a63315-559b-4bc3-a222-ce8323b7baee "CPP Lists 0 to 4") | WIP project list about C++ <br> Modules (0 to 4) from 42 school - 42 São Paulo campus | Grade: <br> not evaluated yet |
-| :-: | :-: | :-: |
+| Module    | Grade              |
+|-----------|--------------------|
+| Module 00 | 100%               |
+| Module 01 | 100%               |
+| Module 02 | 80%                |
+| Module 03 | 80%                |
+| Module 04 | 80%                |
+| Module 05 | 100%               |
+| Module 06 | not evaluated yet  |
+| Module 07 | not evaluated yet  |
+| Module 08 | not evaluated yet  |
+| Module 09 | not evaluated yet  |
 
 
 > [!Important]
@@ -10,7 +21,11 @@
 > - Module 02 -> training Ad-hoc polymorphism, operator overloading and the Orthodox Canonical class form
 > - Module 03 -> weird Inheritance, lol
 > - Module 04 -> more Subtype Polymorphism, Abstract Classes, and Interfaces
-
+> - Module 05 -> Repetition and Exceptions
+> - Module 06 -> C++ casts (static_cast<>, dynamic_cast<>, const_cast<>, reinterpret_cast<>)
+> - Module 07 -> C++ templates
+> - Module 08 -> Templated containers (vector, map, stack, etc), iterators, algorithms
+> - Module 09 -> STL (Standard Template Library) algorithms and function objects
 https://cplusplus.com/doc/tutorial
 
 https://www.learncpp.com/
@@ -40,3 +55,33 @@ To run any of these tasks, use:
 
 ```sh
 make <target>
+```
+
+## Module Makefile Targets
+
+Each module (Module00-Module09) has a consistent set of Makefile targets:
+
+| Target         | Description                                    |
+|----------------|------------------------------------------------|
+| **make**       | Build exercises + run all tests                |
+| **make test**  | Run all tests (Google Test)                    |
+| **make test-exNN** | Run tests for specific exercise (e.g., `make test-ex00`) |
+| **make build_cmake** | Build with CMake system                   |
+| **make build_exercises** | Build individual exercises only        |
+| **make build_all** | Build with both systems                    |
+| **make clean** | Clean both build systems                       |
+| **make fclean**| Deep clean both systems                        |
+| **make re**    | Full rebuild                                   |
+| **make help**  | Show all available targets                     |
+
+### Per-Module Usage
+
+```bash
+# Run all tests for a module
+cd Module06 && make test
+
+# Run specific exercise tests
+cd Module06 && make test-ex01
+
+# Build and run a specific exercise
+cd Module06/ex00 && make go

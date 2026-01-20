@@ -60,8 +60,12 @@ class MutantStack : public std::stack<T> {
 
 ```bash
 cd Module08
-make          # Build + run tests
-make test     # Run tests only
+make              # Build + run tests
+make test         # Run all tests
+make test-ex00    # Run ex00 tests only
+make test-ex01    # Run ex01 tests only
+make test-ex02    # Run ex02 tests only
+make help         # Show all available targets
 ```
 
 ## Test Coverage
