@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include <string>
-#include "../ex02/Array.hpp"
+// #include "../ex02/headers/Array.hpp"
 
 // ============================================
 // Default Constructor Tests

@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 #include <string>
-#include "../ex00/whatever.hpp"
+#include "../ex00/headers/Whatever.hpp"
 
 // ============================================
 // Swap Tests - Integer

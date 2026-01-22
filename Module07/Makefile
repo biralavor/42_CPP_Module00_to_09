@@ -49,19 +49,25 @@ test: build_cmake
 	@printf "$(GREEN)Tests completed$(RESET)\n"
 
 .PHONY: test-ex00
-test-ex00: build_cmake
+test-ex00: configure
+	@printf "$(CYAN)Building ex00 tests...$(RESET)\n"
+	@cd $(BUILD_DIR) && make TestModule07Ex00 --no-print-directory
 	@printf "$(CYAN)Running ex00 tests...$(RESET)\n"
 	@cd $(BUILD_DIR) && ./tests/TestModule07Ex00
 	@printf "$(GREEN)ex00 tests completed$(RESET)\n"
 
 .PHONY: test-ex01
-test-ex01: build_cmake
+test-ex01: configure
+	@printf "$(CYAN)Building ex01 tests...$(RESET)\n"
+	@cd $(BUILD_DIR) && make TestModule07Ex01 --no-print-directory
 	@printf "$(CYAN)Running ex01 tests...$(RESET)\n"
 	@cd $(BUILD_DIR) && ./tests/TestModule07Ex01
 	@printf "$(GREEN)ex01 tests completed$(RESET)\n"
 
 .PHONY: test-ex02
-test-ex02: build_cmake
+test-ex02: configure
+	@printf "$(CYAN)Building ex02 tests...$(RESET)\n"
+	@cd $(BUILD_DIR) && make TestModule07Ex02 --no-print-directory
 	@printf "$(CYAN)Running ex02 tests...$(RESET)\n"
 	@cd $(BUILD_DIR) && ./tests/TestModule07Ex02
 	@printf "$(GREEN)ex02 tests completed$(RESET)\n"

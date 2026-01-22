@@ -9,6 +9,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 # Enable testing for the whole project
 enable_testing()
 
+# Add exercise subdirectories
+add_subdirectory(ex00)
+# add_subdirectory(ex01)
+# add_subdirectory(ex02)
+
 # Add tests directory
 add_subdirectory(tests)
 
