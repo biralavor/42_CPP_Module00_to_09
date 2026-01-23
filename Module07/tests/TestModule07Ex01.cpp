@@ -8,7 +8,7 @@
 #include <gtest/gtest.h>
 #include <string>
 #include <sstream>
-// #include "../ex01/headers/iter.hpp"
+#include "../ex01/headers/Iter.hpp"
 
 // ============================================
 // Helper Functions for Testing
