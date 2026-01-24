@@ -40,7 +40,7 @@ HEADERS_DIR		:= ./headers/
 
 NAME			:= $(BIN_DIR)array
 SRC_F			+= main.cpp
-SRC_F			+= Array.cpp
+# SRC_F			+= Array.tpp
 
 SRC_F_ALL		:= $(addprefix $(SRC_DIR), $(SRC_F))
 OBJ_F			:= $(patsubst $(SRC_DIR)%.cpp, $(BUILD_DIR)%.o, $(SRC_F_ALL))

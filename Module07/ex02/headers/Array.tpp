@@ -11,28 +11,40 @@
 /* ************************************************************************** */
 
 #include "Array.hpp"
+#include <cstdlib>
+#include <stdexcept>
 
-Array::Array() {};
+template <typename T>
+Array<T>::Array() : _data(nullptr), _size(0) {};
 
-Array::~Array() {};
+template <typename T>
+Array<T>::~Array() {};
 
-Array::Array(unsigned int n) {
-    for(unsigned int idx = 0; idx < n; idx++) {
-        this->data = new T();
+template <typename T>
+Array<T>::Array(unsigned int n) : _data(new T[n]()), _size(n) {};
+
+template <typename T>
+Array<T>::Array(const Array &rightSide) : _data(nullptr), _size(0) {
+    for (unsigned int idx = 0; rightSide._size > idx; idx++) {
+        this->_data[idx] = rightSide._data[idx];
     }
-};
-
-Array::Array(const Array &rightSide) {
     *this = rightSide;
 };
 
-void swap(Array &rightSide) {
-    std::swap(this->size, rightSide.size);
-    std::swap(this->data, rightSide.data);
+template <typename T>
+void Array<T>::swap(Array &rightSide) {
+    unsigned int tempSize = this->_size;
+    this->_size = rightSide._size;
+    rightSide._size = tempSize;
+
+    T* tempData = this->_data;
+    this->_data = rightSide._data;
+    rightSide._data = tempData;
 };
 
-Array &Array::operator=(const Array &rightSide) {
-    Array temp(rightSide);
+template <typename T>
+Array<T> &Array<T>::operator=(const Array<T> &rightSide) {
+    Array<T> temp(rightSide);
     this->swap(temp);
     return *this;
 };

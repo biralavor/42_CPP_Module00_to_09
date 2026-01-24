@@ -17,7 +17,7 @@ class Array {
 private:
     T* _data;
     unsigned int _size;
-    
+
 public:
     Array();
     Array(unsigned int n);
@@ -30,3 +30,6 @@ public:
     T &operator[](unsigned int idx);
     T const &operator[](unsigned int idx) const;
 };
+
+#include "Array.tpp"
+/* ************************************************************************** */
