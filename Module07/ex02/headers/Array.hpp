@@ -25,6 +25,7 @@ public:
     Array &operator=(const Array &rightSide);
     ~Array();
 
+    void swap(Array &rightSide);
     unsigned int size() const;
     T &operator[](unsigned int idx);
     T const &operator[](unsigned int idx) const;

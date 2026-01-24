@@ -21,3 +21,18 @@ Array::Array(unsigned int n) {
         this->data = new T();
     }
 };
+
+Array::Array(const Array &rightSide) {
+    *this = rightSide;
+};
+
+void swap(Array &rightSide) {
+    std::swap(this->size, rightSide.size);
+    std::swap(this->data, rightSide.data);
+};
+
+Array &Array::operator=(const Array &rightSide) {
+    Array temp(rightSide);
+    this->swap(temp);
+    return *this;
+};
