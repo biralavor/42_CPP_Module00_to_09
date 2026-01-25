@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 
 # Set policy to handle FetchContent timestamps
-cmake_policy(SET CMP0135 NEW)
+# cmake_policy(SET CMP0135 NEW)
 
 # GoogleTest
 include(FetchContent)

@@ -4,7 +4,7 @@ C++ type casting: static_cast, reinterpret_cast, dynamic_cast.
 
 ## Overview
 
-This module introduces C++ casting operators, replacing C-style casts with safer, more explicit alternatives. You'll implement type conversion, serialization, and runtime type identification.
+This module introduces C++ casting operators, replacing C-style casts with safer, more explicit alternatives. The goal here is to implement type conversion, serialization, and runtime type identification.
 
 ## Exercises
 
