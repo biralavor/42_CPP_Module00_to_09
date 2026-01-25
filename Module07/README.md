@@ -4,7 +4,7 @@ Generic programming with function and class templates.
 
 ## Overview
 
-This module introduces templates, enabling you to write generic, type-independent code. You'll implement function templates and a class template, learning how the compiler generates type-specific code at compile time.
+This module introduces templates, enabling you to write generic, type-independent code. The goal here is to implement function templates and a class template, learning how the compiler generates type-specific code at compile time.
 
 ## Exercises
 
