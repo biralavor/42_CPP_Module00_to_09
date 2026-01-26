@@ -1,18 +1,29 @@
 # C++ list Modules (0 to 9) from 42 school - 42 São Paulo campus
-![cpp-list-0to9](https://github.com/user-attachments/assets/04a63315-559b-4bc3-a222-ce8323b7baee "CPP Lists 0 to 9")
 
-| Module    | Grade              |
-|-----------|--------------------|
-| Module 00 | 100%               |
-| Module 01 | 100%               |
-| Module 02 | 80%                |
-| Module 03 | 80%                |
-| Module 04 | 80%                |
-| Module 05 | 100%               |
-| Module 06 | not evaluated yet  |
-| Module 07 | not evaluated yet  |
-| Module 08 | not evaluated yet  |
-| Module 09 | not evaluated yet  |
+<table border="0" align="center">
+  <tr>
+    <td width="33%" align="left" valign="center">
+      <img src="https://github.com/user-attachments/assets/04a63315-559b-4bc3-a222-ce8323b7baee" width="100%" alt="CPP Progress">
+    </td>
+    <td width="35%" valign="top">
+      <br>
+      <img src="https://img.shields.io/badge/Module%2000-100%25-brightgreen"><br>
+      <img src="https://img.shields.io/badge/Module%2001-100%25-brightgreen"><br>
+      <img src="https://img.shields.io/badge/Module%2002-80%25-yellow"><br>
+      <img src="https://img.shields.io/badge/Module%2003-80%25-yellow"><br>
+      <img src="https://img.shields.io/badge/Module%2004-80%25-yellow">
+    </td>
+    <td width="35%" valign="top">
+      <br>
+      <img src="https://img.shields.io/badge/Module%2005-100%25-brightgreen"><br>
+      <img src="https://img.shields.io/badge/Module%2006-100%25-brightgreen"><br>
+      <img src="https://img.shields.io/badge/Module%2007-100%25-brightgreen"><br>
+      <img src="https://img.shields.io/badge/Module%2008-Pending-lightgrey"><br>
+      <img src="https://img.shields.io/badge/Module%2009-Pending-lightgrey">
+    </td>
+  </tr>
+</table>
+
 
 
 > [!Important]
