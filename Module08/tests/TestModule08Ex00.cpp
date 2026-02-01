@@ -9,7 +9,7 @@
 #include <vector>
 #include <list>
 #include <deque>
-#include "../ex00/easyfind.hpp"
+#include "../ex00/headers/Easyfind.hpp"
 
 // ============================================
 // Tests with std::vector
