@@ -17,9 +17,9 @@ target_link_libraries(TestModule08Ex00 GTest::gtest_main)
 target_include_directories(TestModule08Ex00 PRIVATE ../ex00)
 
 # ex01 - Span class
-# add_executable(TestModule08Ex01 TestModule08Ex01.cpp ../ex01/Span.cpp)
-# target_link_libraries(TestModule08Ex01 GTest::gtest_main)
-# target_include_directories(TestModule08Ex01 PRIVATE ../ex01)
+add_executable(TestModule08Ex01 TestModule08Ex01.cpp ../ex01/src/Span.cpp)
+target_link_libraries(TestModule08Ex01 GTest::gtest_main)
+target_include_directories(TestModule08Ex01 PRIVATE ../ex01)
 
 # ex02 - MutantStack (header-only template)
 # add_executable(TestModule08Ex02 TestModule08Ex02.cpp)
