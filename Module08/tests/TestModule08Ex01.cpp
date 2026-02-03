@@ -8,7 +8,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <list>
-#include "../ex01/Span.hpp"
+#include "../ex01/headers/Span.hpp"
 
 // ============================================
 // Constructor Tests
@@ -312,8 +312,8 @@ TEST(SpanEdgeTest, ExtremeValues) {
     sp.addNumber(2147483647);   // INT_MAX
 
     // This might overflow - implementation should handle it
-    unsigned int expected = 4294967295u;  // UINT_MAX approximately
-    EXPECT_GE(sp.longestSpan(), 0u);  // At minimum, should not crash
+    // At minimum, should not crash
+    EXPECT_GE(sp.longestSpan(), 0u);
 }
 
 TEST(SpanEdgeTest, AddAfterFullRangeAdd) {
