@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 11:06:26 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/01 11:51:25 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/03 21:40:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int main()
         vec.push_back(idx * 10);
     
     try {
-        std::vector<int>interator = easyfind(vec, 50);
-        std::cout << "Found: " << *interator << std::endl;
+        std::vector<int>::iterator iter = easyfind(vec, 50);
+        std::cout << "Found: " << *iter << std::endl;
     } catch (const std::exception &error) {
         std::cerr << error.what() << std::endl;
     }

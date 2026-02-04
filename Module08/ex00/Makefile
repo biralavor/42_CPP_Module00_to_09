@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/19 16:42:48 by umeneses          #+#    #+#              #
-#    Updated: 2026/02/01 11:11:17 by umeneses         ###   ########.fr        #
+#    Updated: 2026/02/03 21:43:26 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ HEADERS_DIR		:= ./headers/
 
 NAME			:= $(BIN_DIR)easyfind
 SRC_F			+= main.cpp
-SRC_F			+= Easyfind.tpp
 
 SRC_F_ALL		:= $(addprefix $(SRC_DIR), $(SRC_F))
 OBJ_F			:= $(patsubst $(SRC_DIR)%.cpp, $(BUILD_DIR)%.o, $(SRC_F_ALL))

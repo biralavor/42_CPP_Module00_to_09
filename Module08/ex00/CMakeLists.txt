@@ -1,11 +1,9 @@
 set(CMAKE_CXX_STANDARD 98)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
-add_library(Easyfind_lib
-	src/Easyfind.cpp
-)
+add_library(Easyfind_lib INTERFACE)
 
-target_include_directories(Easyfind_lib PUBLIC
+target_include_directories(Easyfind_lib INTERFACE
 	${CMAKE_CURRENT_SOURCE_DIR}/headers
 )
 
