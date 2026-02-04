@@ -278,6 +278,129 @@ TEST(SpanRangeTest, AddPartialRange) {
 }
 
 // ============================================
+// Iterator Traits & Type Safety Tests
+// ============================================
+
+TEST(SpanIteratorTraitsTest, VectorIteratorTraits) {
+    // Test with random access iterators (vector)
+    std::vector<int> vec;
+    for (int i = 0; i < 100; i++) {
+        vec.push_back(i * 10);
+    }
+
+    Span sp(100);
+    sp.addRange(vec.begin(), vec.end());
+
+    EXPECT_EQ(sp.shortestSpan(), 10);
+    EXPECT_EQ(sp.longestSpan(), 990);
+}
+
+TEST(SpanIteratorTraitsTest, ListIteratorTraits) {
+    // Test with bidirectional iterators (list)
+    std::list<int> lst;
+    for (int i = 5; i <= 50; i += 5) {
+        lst.push_back(i);
+    }
+
+    Span sp(20);
+    sp.addRange(lst.begin(), lst.end());
+
+    EXPECT_EQ(sp.shortestSpan(), 5);
+    EXPECT_EQ(sp.longestSpan(), 45);
+}
+
+TEST(SpanIteratorTraitsTest, ReverseIterators) {
+    // Test with reverse iterators
+    std::vector<int> vec;
+    vec.push_back(100);
+    vec.push_back(200);
+    vec.push_back(300);
+
+    Span sp(5);
+    sp.addRange(vec.rbegin(), vec.rend());
+
+    EXPECT_EQ(sp.shortestSpan(), 100);
+    EXPECT_EQ(sp.longestSpan(), 200);
+}
+
+TEST(SpanIteratorTraitsTest, InvalidRangeNegativeDistance) {
+    // Test when start > end (invalid range)
+    std::vector<int> vec;
+    vec.push_back(1);
+    vec.push_back(2);
+    vec.push_back(3);
+
+    Span sp(10);
+    
+    // Passing end before start should throw
+    EXPECT_THROW(sp.addRange(vec.end(), vec.begin()), std::exception);
+}
+
+TEST(SpanIteratorTraitsTest, EmptyRange) {
+    // Test with empty range (begin == end)
+    std::vector<int> vec;
+    vec.push_back(1);
+    vec.push_back(2);
+    vec.push_back(3);
+
+    Span sp(10);
+    sp.addRange(vec.begin(), vec.begin());  // Empty range
+
+    // Should not add any elements
+    EXPECT_THROW(sp.shortestSpan(), std::exception);  // Not enough numbers
+}
+
+TEST(SpanIteratorTraitsTest, ConstIterators) {
+    // Test with const iterators
+    std::vector<int> vec;
+    vec.push_back(42);
+    vec.push_back(84);
+    vec.push_back(126);
+
+    const std::vector<int>& constVec = vec;
+
+    Span sp(5);
+    sp.addRange(constVec.begin(), constVec.end());
+
+    EXPECT_EQ(sp.shortestSpan(), 42);
+    EXPECT_EQ(sp.longestSpan(), 84);
+}
+
+TEST(SpanIteratorTraitsTest, MixedIteratorTypes) {
+    // Test mixing different container types
+    Span sp(20);
+
+    std::vector<int> vec;
+    vec.push_back(10);
+    vec.push_back(20);
+    vec.push_back(30);
+
+    std::list<int> lst;
+    lst.push_back(5);
+    lst.push_back(15);
+
+    sp.addRange(vec.begin(), vec.end());
+    sp.addRange(lst.begin(), lst.end());
+
+    EXPECT_EQ(sp.shortestSpan(), 5);
+    EXPECT_EQ(sp.longestSpan(), 25);  // 30 - 5
+}
+
+TEST(SpanIteratorTraitsTest, LargeDistanceCalculation) {
+    // Test that difference_type properly handles large ranges
+    std::vector<int> vec;
+    for (int i = 0; i < 50000; i++) {
+        vec.push_back(i);
+    }
+
+    Span sp(50000);
+    
+    // Should properly calculate distance without overflow
+    EXPECT_NO_THROW(sp.addRange(vec.begin(), vec.end()));
+    EXPECT_EQ(sp.longestSpan(), 49999u);
+}
+
+// ============================================
 // Large Scale Tests (10,000+ numbers)
 // ============================================
 

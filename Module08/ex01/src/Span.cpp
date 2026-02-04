@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:55:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/03 21:35:11 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/03 21:38:05 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Span::Span(unsigned int quantity) : _maxSize(quantity) {
     _numbers.reserve(quantity);
 }
 
-Span::Span(const Span &rightSide) : _maxSize(rightSide._maxSize), _numbers(rightSide._numbers) {}
+Span::Span(const Span &rightSide) : _numbers(rightSide._numbers), _maxSize(rightSide._maxSize) {}
 
 Span &Span::operator=(const Span &rightSide) {
     if (this != &rightSide) {

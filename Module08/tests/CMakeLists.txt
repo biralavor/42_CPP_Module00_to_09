@@ -14,7 +14,7 @@ enable_testing()
 # ex00 - easyfind (header-only template)
 add_executable(TestModule08Ex00 TestModule08Ex00.cpp)
 target_link_libraries(TestModule08Ex00 GTest::gtest_main)
-target_include_directories(TestModule08Ex00 PRIVATE ../ex00)
+target_include_directories(TestModule08Ex00 PRIVATE ../ex00/headers)
 
 # ex01 - Span class
 add_executable(TestModule08Ex01 TestModule08Ex01.cpp ../ex01/src/Span.cpp)

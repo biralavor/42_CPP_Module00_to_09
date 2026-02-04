@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:47:47 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/03 21:09:45 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/03 21:46:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <limits>
+#include <iterator>
 
 class Span {
     private:
@@ -37,8 +38,11 @@ class Span {
 
 template <typename InputIterator>
 void Span::addRange(InputIterator start, InputIterator end) {
-    size_t rangeSize = std::distance(start, end);
-    if (rangeSize + _numbers.size() > _maxSize) {
+    typename std::iterator_traits<InputIterator>::difference_type rangeSize = std::distance(start, end);
+    if (rangeSize < 0) {
+        throw std::invalid_argument("Error. Invalid iterator range (start > end).");
+    }
+    if (static_cast<size_t>(rangeSize) + _numbers.size() > _maxSize) {
         throw std::overflow_error("Error. Range exceeds Span capacity.");
     }
     _numbers.insert(_numbers.end(), start, end);
