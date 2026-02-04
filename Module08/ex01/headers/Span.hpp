@@ -6,13 +6,12 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:47:47 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/03 21:46:47 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/03 22:03:42 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <vector>
-#include <list>
 #include <algorithm>
 #include <stdexcept>
 #include <limits>

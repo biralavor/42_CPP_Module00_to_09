@@ -6,12 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 21:14:55 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/03 21:25:01 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/03 22:02:09 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Span.hpp"
 #include <iostream>
+#include <list>
+#include "Span.hpp"
 
 int main()
 {

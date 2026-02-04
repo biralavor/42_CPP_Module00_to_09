@@ -6,12 +6,12 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 11:06:26 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/03 21:59:20 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/03 22:01:13 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Easyfind.hpp"
 #include <list>
+#include "Easyfind.hpp"
 
 int main()
 {
@@ -66,4 +66,5 @@ int main()
         std::cerr << error.what() << std::endl;
     }
     std::cout << "///// END EASYFIND TEST WITH DIFFERENT CONTAINERS /////" << std::endl;
+    return 0;
 }
