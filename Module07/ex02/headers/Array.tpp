@@ -49,6 +49,8 @@ void Array<T>::swap(Array &rightSide) {
 
 template <typename T>
 Array<T> &Array<T>::operator=(const Array<T> &rightSide) {
+  if (this == &rightSide)
+    return *this;
   Array<T> temp(rightSide);
   this->swap(temp);
   return *this;

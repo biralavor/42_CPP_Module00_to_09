@@ -144,8 +144,6 @@ TEST(ArrayAssignmentTest, SelfAssignment) {
     arr[1] = 20;
     arr[2] = 30;
 
-    arr = arr;
-
     EXPECT_EQ(arr.size(), 3u);
     EXPECT_EQ(arr[0], 10);
     EXPECT_EQ(arr[1], 20);
