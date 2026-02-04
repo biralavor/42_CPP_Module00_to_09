@@ -149,6 +149,20 @@ TEST(SpanShortestTest, OneNumberThrows) {
     EXPECT_THROW(sp.shortestSpan(), std::exception);
 }
 
+TEST(SpanShortestTest, LargeRangeNoOverflow) {
+    Span sp(3);
+    sp.addNumber(2147483647);   // INT_MAX
+    sp.addNumber(-2147483648);  // INT_MIN
+    sp.addNumber(0);
+
+    // Sorted: -2147483648, 0, 2147483647
+    // Shortest span should be min(2147483648, 2147483647) = 2147483647
+    // Should not overflow to 0
+    unsigned int shortest = sp.shortestSpan();
+    EXPECT_GT(shortest, 0u);
+    EXPECT_EQ(shortest, 2147483647u);
+}
+
 // ============================================
 // longestSpan Tests
 // ============================================

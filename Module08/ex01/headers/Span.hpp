@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:47:47 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/02 22:50:02 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/03 21:09:45 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 #include <vector>
 #include <list>
 #include <algorithm>
-#include <exception>
+#include <stdexcept>
+#include <limits>
 
 class Span {
     private:
-        std::vector<int> numbers;
-        unsigned int maxSize;
+        std::vector<int> _numbers;
+        unsigned int _maxSize;
     
     public:
         Span(unsigned int quantity);
@@ -30,6 +31,15 @@ class Span {
         void addNumber(int nbr);
         template <typename InputIterator>
         void addRange(InputIterator start, InputIterator end);
-        unsigned short int shortestSpan();
+        unsigned int shortestSpan();
         unsigned int longestSpan();
 };
+
+template <typename InputIterator>
+void Span::addRange(InputIterator start, InputIterator end) {
+    size_t rangeSize = std::distance(start, end);
+    if (rangeSize + _numbers.size() > _maxSize) {
+        throw std::overflow_error("Error. Range exceeds Span capacity.");
+    }
+    _numbers.insert(_numbers.end(), start, end);
+}

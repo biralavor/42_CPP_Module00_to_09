@@ -6,14 +6,14 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:55:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/02 23:07:15 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/03 21:24:44 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span(unsigned int quantity) : maxSize(quantity) {
-    numbers.reserve(quantity);
+Span::Span(unsigned int quantity) : _maxSize(quantity) {
+    _numbers.reserve(quantity);
 }
 
 Span::Span(const Span &rightSide) {
@@ -22,8 +22,8 @@ Span::Span(const Span &rightSide) {
 
 Span &Span::operator=(const Span &rightSide) {
     if (this != &rightSide) {
-        this->numbers = rightSide.numbers;
-        this->maxSize = rightSide.maxSize;
+        this->_numbers = rightSide._numbers;
+        this->_maxSize = rightSide._maxSize;
     }
     return *this;
 }
@@ -31,31 +31,34 @@ Span &Span::operator=(const Span &rightSide) {
 Span::~Span() {}
 
 void Span::addNumber(int nbr) {
-    if (numbers.size() >= maxSize) {
-        throw std::exception();
+    if (_numbers.size() >= _maxSize) {
+        throw std::overflow_error("Error. Span is full. Cannot add more numbers.");
     }
-    numbers.push_back(nbr);
+    _numbers.push_back(nbr);
 }
 
-template <typename InputIterator>
-void Span::addRange(InputIterator start, InputIterator end) {
-    if (std::distance(start, end) + numbers.size() > maxSize) {
-        throw std::exception();
+unsigned int Span::shortestSpan() {
+    if (_numbers.size() < 2) {
+        throw std::logic_error("Error. Not enough numbers to find the shortest span.");
     }
-    numbers.insert(numbers.end(), start, end);
-}
-
-unsigned short int Span::shortestSpan() {
-    if (numbers.size() < 2) {
-        throw std::exception();
+    long minSpan = std::numeric_limits<long>::max();
+    std::vector<int> sortedNumbers = _numbers;
+    std::sort(sortedNumbers.begin(), sortedNumbers.end());
+    for (size_t idx = 1; idx < sortedNumbers.size(); ++idx)
+    {
+        long span = static_cast<long>(sortedNumbers[idx]) - static_cast<long>(sortedNumbers[idx - 1]);
+        if (span < minSpan) {
+            minSpan = span;
+        }
     }
+    return static_cast<unsigned int>(minSpan);
 }
 
 unsigned int Span::longestSpan() {
-    if (numbers.size() < 2) {
-        throw std::exception();
+    if (_numbers.size() < 2) {
+        throw std::logic_error("Error. Not enough numbers to find the longest span.");
     }
-    int minValue = *std::min_element(numbers.begin(), numbers.end());
-    int maxValue = *std::max_element(numbers.begin(), numbers.end());
+    int minValue = *std::min_element(_numbers.begin(), _numbers.end());
+    int maxValue = *std::max_element(_numbers.begin(), _numbers.end());
     return maxValue - minValue;
 }
