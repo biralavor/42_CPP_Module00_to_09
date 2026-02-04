@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/02 21:55:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/03 21:38:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/03 22:09:21 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ unsigned int Span::longestSpan() {
     if (_numbers.size() < 2) {
         throw std::logic_error("Error. Not enough numbers to find the longest span.");
     }
-    int minValue = *std::min_element(_numbers.begin(), _numbers.end());
-    int maxValue = *std::max_element(_numbers.begin(), _numbers.end());
-    return maxValue - minValue;
+    long minValue = static_cast<long>(*std::min_element(_numbers.begin(), _numbers.end()));
+    long maxValue = static_cast<long>(*std::max_element(_numbers.begin(), _numbers.end()));
+    return static_cast<unsigned int>(maxValue - minValue);
 }

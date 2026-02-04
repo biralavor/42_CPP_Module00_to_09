@@ -218,6 +218,63 @@ TEST(SpanLongestTest, OneNumberThrows) {
 }
 
 // ============================================
+// Overflow Prevention Tests - longestSpan
+// ============================================
+
+TEST(SpanOverflowTest, LongestSpanIntMaxMinusIntMin) {
+    Span sp(2);
+    sp.addNumber(2147483647);   // INT_MAX
+    sp.addNumber(-2147483648);  // INT_MIN
+
+    // INT_MAX - INT_MIN = 2147483647 - (-2147483648) = 4294967295
+    // This is the full range of unsigned int
+    unsigned int longest = sp.longestSpan();
+    EXPECT_EQ(longest, 4294967295u);
+}
+
+TEST(SpanOverflowTest, LongestSpanLargePositiveRange) {
+    Span sp(3);
+    sp.addNumber(2147483647);   // INT_MAX
+    sp.addNumber(0);
+    sp.addNumber(1000000000);
+
+    // Longest span: INT_MAX - 0 = 2147483647
+    EXPECT_EQ(sp.longestSpan(), 2147483647u);
+}
+
+TEST(SpanOverflowTest, LongestSpanLargeNegativeRange) {
+    Span sp(3);
+    sp.addNumber(-2147483648);  // INT_MIN
+    sp.addNumber(0);
+    sp.addNumber(-1000000000);
+
+    // Longest span: 0 - INT_MIN = 2147483648
+    EXPECT_EQ(sp.longestSpan(), 2147483648u);
+}
+
+TEST(SpanOverflowTest, LongestSpanSymmetricValues) {
+    Span sp(3);
+    sp.addNumber(-1000000000);
+    sp.addNumber(0);
+    sp.addNumber(1000000000);
+
+    // Longest span: 1000000000 - (-1000000000) = 2000000000
+    EXPECT_EQ(sp.longestSpan(), 2000000000u);
+}
+
+TEST(SpanOverflowTest, LongestSpanWithMultipleExtremes) {
+    Span sp(5);
+    sp.addNumber(2147483647);   // INT_MAX
+    sp.addNumber(-2147483648);  // INT_MIN
+    sp.addNumber(0);
+    sp.addNumber(1000000);
+    sp.addNumber(-1000000);
+
+    // Longest span should still be INT_MAX - INT_MIN
+    EXPECT_EQ(sp.longestSpan(), 4294967295u);
+}
+
+// ============================================
 // Range Addition Tests (Iterator-based)
 // ============================================
 
