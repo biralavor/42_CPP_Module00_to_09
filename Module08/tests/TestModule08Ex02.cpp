@@ -5,7 +5,7 @@
 
 #include <gtest/gtest.h>
 #include <list>
-#include "../ex02/MutantStack.hpp"
+#include "../ex02/headers/MutantStack.hpp"
 
 // ============================================
 // Basic Stack Operations
