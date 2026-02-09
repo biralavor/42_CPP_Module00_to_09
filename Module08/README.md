@@ -4,7 +4,7 @@ Templated containers, iterators, and STL algorithms.
 
 ## Overview
 
-This module introduces the Standard Template Library (STL). You'll use containers like `vector`, `list`, and `deque`, along with algorithms from `<algorithm>`.
+This module introduces the Standard Template Library (STL). The goal here is to use containers like `vector`, `list`, and `deque`, along with algorithms from `<algorithm>`.
 
 ## Exercises
 
