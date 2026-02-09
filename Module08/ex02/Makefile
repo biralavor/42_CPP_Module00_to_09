@@ -6,7 +6,7 @@
 #    By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/19 16:42:48 by umeneses          #+#    #+#              #
-#    Updated: 2026/02/08 11:45:32 by umeneses         ###   ########.fr        #
+#    Updated: 2026/02/08 11:58:55 by umeneses         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,9 +38,8 @@ HEADERS_DIR		:= ./headers/
 #								FILES										   #
 # **************************************************************************** #
 
-NAME			:= $(BIN_DIR)span
+NAME			:= $(BIN_DIR)mutantstack
 SRC_F			+= main.cpp
-SRC_F			+= Span.cpp
 
 SRC_F_ALL		:= $(addprefix $(SRC_DIR), $(SRC_F))
 OBJ_F			:= $(patsubst $(SRC_DIR)%.cpp, $(BUILD_DIR)%.o, $(SRC_F_ALL))
