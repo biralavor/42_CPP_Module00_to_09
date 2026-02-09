@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/08 11:44:19 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/08 13:15:59 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:03:47 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,24 @@ typename MutantStack<T>::const_iterator MutantStack<T>::begin() const {
 template <typename T>
 typename MutantStack<T>::const_iterator MutantStack<T>::end() const {
     return this->c.end();
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rbegin() {
+    return this->c.rbegin();
+}
+
+template <typename T>
+typename MutantStack<T>::reverse_iterator MutantStack<T>::rend() {
+    return this->c.rend();
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rbegin() const {
+    return this->c.rbegin();
+}
+
+template <typename T>
+typename MutantStack<T>::const_reverse_iterator MutantStack<T>::rend() const {
+    return this->c.rend();
 }
