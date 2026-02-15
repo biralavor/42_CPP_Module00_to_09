@@ -93,15 +93,16 @@ void BitcoinExchange::processInput(const std::string &inputFile) {
     double value = atof(valueStr.c_str());
     std::map<std::string, double> closestDates = this->findClosestDate(date);
     if (closestDates.empty()) {
-      throw std::runtime_error("Error: No data available for date " + date);
+      std::cerr << RED("Error: ") << YELLOW("No data available for date ") << date << std::endl;
       continue;
     }
-    double closestValue = closestDates.begin()->second;
-    if (closestDates.size() > 1) {
-      closestValue = (closestValue + closestDates.rbegin()->second) / 2.0;
-    }
+    std::map<std::string, double>::iterator it = closestDates.upper_bound(date);
+    if (it != closestDates.begin())
+      --it;
+    double closestValue = it->second;
     double result = value * closestValue;
-    std::cout << GREEN(date) << " => " << BLUE(value) << " = " << CYAN(result)
+    std::cout << std::fixed << std::setprecision(2)
+              << GREEN(date) << " => " << BLUE(value) << " = " << CYAN(result)
               << std::endl;
   }
   file.close();

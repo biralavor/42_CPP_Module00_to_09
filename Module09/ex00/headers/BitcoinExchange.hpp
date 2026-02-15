@@ -6,15 +6,16 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 22:42:45 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/15 13:10:48 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/15 15:53:27 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include <map>
 #include <cstdlib>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
-#include <map>
 #include <sstream>
 #include <string>
 
