@@ -16,7 +16,6 @@
 #include <iostream>
 #include <map>
 #include <sstream>
-#include <stack>
 #include <string>
 
 #define DATA_FILE "data/data.csv"
