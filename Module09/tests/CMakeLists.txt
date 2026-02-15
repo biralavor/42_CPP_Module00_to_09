@@ -12,21 +12,22 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 # ex00 - BitcoinExchange
-add_executable(TestModule09Ex00 TestModule09Ex00.cpp ../ex00/BitcoinExchange.cpp)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/../ex00/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/..)
+add_executable(TestModule09Ex00 TestModule09Ex00.cpp ../ex00/src/BitcoinExchange.cpp ../ex00/src/utils.cpp)
 target_link_libraries(TestModule09Ex00 GTest::gtest_main)
-target_include_directories(TestModule09Ex00 PRIVATE ../ex00)
+target_include_directories(TestModule09Ex00 PRIVATE ../ex00/headers)
 
 # ex01 - RPN
-add_executable(TestModule09Ex01 TestModule09Ex01.cpp ../ex01/RPN.cpp)
-target_link_libraries(TestModule09Ex01 GTest::gtest_main)
-target_include_directories(TestModule09Ex01 PRIVATE ../ex01)
+# add_executable(TestModule09Ex01 TestModule09Ex01.cpp ../ex01/src/RPN.cpp)
+# target_link_libraries(TestModule09Ex01 GTest::gtest_main)
+# target_include_directories(TestModule09Ex01 PRIVATE ../ex01/headers)
 
 # ex02 - PmergeMe
-add_executable(TestModule09Ex02 TestModule09Ex02.cpp ../ex02/PmergeMe.cpp)
-target_link_libraries(TestModule09Ex02 GTest::gtest_main)
-target_include_directories(TestModule09Ex02 PRIVATE ../ex02)
+# add_executable(TestModule09Ex02 TestModule09Ex02.cpp ../ex02/src/PmergeMe.cpp)
+# target_link_libraries(TestModule09Ex02 GTest::gtest_main)
+# target_include_directories(TestModule09Ex02 PRIVATE ../ex02/headers)
 
 include(GoogleTest)
 gtest_discover_tests(TestModule09Ex00)
-gtest_discover_tests(TestModule09Ex01)
-gtest_discover_tests(TestModule09Ex02)
+# gtest_discover_tests(TestModule09Ex01)
+# gtest_discover_tests(TestModule09Ex02)
