@@ -188,6 +188,51 @@ TEST(BitcoinExchangeFindTest, FirstDatabaseEntry) {
     EXPECT_TRUE(almostEqual(result["2009-01-02"], 0.0));
 }
 
+TEST(BitcoinExchangeFindTest, UsesLowerDateNotAverage) {
+    BitcoinExchange btc;
+    // 2011-01-03 not in DB
+    // lower neighbor: 2011-01-01 (rate 0.3)
+    // upper neighbor: 2011-01-04 (rate 0.3)
+    // Must use lower (0.3), not average of both
+    std::map<std::string, double> result = btc.findClosestDate("2011-01-03");
+    std::map<std::string, double>::iterator it = result.upper_bound("2011-01-03");
+    if (it != result.begin())
+        --it;
+    EXPECT_EQ(it->first, "2011-01-01");
+    EXPECT_TRUE(almostEqual(it->second, 0.3));
+}
+
+TEST(BitcoinExchangeFindTest, UsesLowerDateBetweenDifferentRates) {
+    BitcoinExchange btc;
+    // 2011-01-06 not in DB
+    // lower neighbor: 2011-01-04 (rate 0.3)
+    // upper neighbor: 2011-01-07 (rate 0.32)
+    // Must use lower (0.3), not average (0.31)
+    std::map<std::string, double> result = btc.findClosestDate("2011-01-06");
+    std::map<std::string, double>::iterator it = result.upper_bound("2011-01-06");
+    if (it != result.begin())
+        --it;
+    EXPECT_EQ(it->first, "2011-01-04");
+    EXPECT_TRUE(almostEqual(it->second, 0.3));
+}
+
+TEST(BitcoinExchangeFindTest, SubjectExampleRates) {
+    BitcoinExchange btc;
+    // Subject: 2011-01-03 => 3 = 0.9 (rate 0.3 * 3)
+    std::map<std::string, double> result = btc.findClosestDate("2011-01-03");
+    std::map<std::string, double>::iterator it = result.upper_bound("2011-01-03");
+    if (it != result.begin())
+        --it;
+    EXPECT_TRUE(almostEqual(it->second * 3.0, 0.9));
+
+    // Subject: 2011-01-09 => 1 = 0.32 (rate 0.32 * 1)
+    result = btc.findClosestDate("2011-01-09");
+    it = result.upper_bound("2011-01-09");
+    if (it != result.begin())
+        --it;
+    EXPECT_TRUE(almostEqual(it->second * 1.0, 0.32));
+}
+
 // ============================================
 // BitcoinExchange - inputValidation Tests
 // ============================================
