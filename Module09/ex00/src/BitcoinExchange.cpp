@@ -43,7 +43,7 @@ void BitcoinExchange::loadDatabase(const std::string &filename) {
 bool BitcoinExchange::inputValidation(std::istringstream &iss,
                                       std::string &date,
                                       std::string &valueStr) const {
-	if (!(iss >> date)) {
+  if (!(iss >> date)) {
     std::cerr << RED("Error: ") << YELLOW("bad input => ") << iss.str() << std::endl;
     return false;
   }
