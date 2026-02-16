@@ -1,224 +1,216 @@
 /* ************************************************************************** */
-/*   TestModule09Ex02.cpp - PmergeMe (Ford-Johnson Sort) Tests                */
-/*   Merge-insert sort with two containers comparison                         */
+/*   TestModule09Ex02.cpp - PmergeMe (Ford-Johnson Sort) Tests               */
+/*   Merge-insert sort with two containers comparison                        */
 /* ************************************************************************** */
 
 #include <gtest/gtest.h>
-#include <vector>
-#include <deque>
-#include "../ex02/PmergeMe.hpp"
+#include "../ex02/headers/PmergeMe.hpp"
 
 // ============================================
-// Basic Sorting Tests
+// Input Validation Tests
 // ============================================
 
-TEST(PmergeMeBasicTest, SubjectExample) {
-    PmergeMe sorter;
-    int input[] = {3, 5, 9, 7, 4};
-    std::vector<int> vec(input, input + 5);
-
-    std::vector<int> result = sorter.sortVector(vec);
-
-    EXPECT_EQ(result[0], 3);
-    EXPECT_EQ(result[1], 4);
-    EXPECT_EQ(result[2], 5);
-    EXPECT_EQ(result[3], 7);
-    EXPECT_EQ(result[4], 9);
+TEST(PmergeMeInputTest, ValidInput) {
+    EXPECT_NO_THROW(PmergeMe("3 5 9 7 4"));
 }
 
-TEST(PmergeMeBasicTest, AlreadySorted) {
-    PmergeMe sorter;
-    int input[] = {1, 2, 3, 4, 5};
-    std::vector<int> vec(input, input + 5);
-
-    std::vector<int> result = sorter.sortVector(vec);
-
-    for (size_t i = 0; i < 5; i++)
-        EXPECT_EQ(result[i], static_cast<int>(i + 1));
+TEST(PmergeMeInputTest, SingleNumber) {
+    EXPECT_NO_THROW(PmergeMe("42"));
 }
 
-TEST(PmergeMeBasicTest, ReverseSorted) {
-    PmergeMe sorter;
-    int input[] = {5, 4, 3, 2, 1};
-    std::vector<int> vec(input, input + 5);
-
-    std::vector<int> result = sorter.sortVector(vec);
-
-    for (size_t i = 0; i < 5; i++)
-        EXPECT_EQ(result[i], static_cast<int>(i + 1));
+TEST(PmergeMeInputTest, LargeNumbers) {
+    EXPECT_NO_THROW(PmergeMe("999999 1 500000 250000 750000"));
 }
 
-TEST(PmergeMeBasicTest, SingleElement) {
-    PmergeMe sorter;
-    std::vector<int> vec(1, 42);
-
-    std::vector<int> result = sorter.sortVector(vec);
-
-    EXPECT_EQ(result[0], 42);
+TEST(PmergeMeInputTest, ExtraSpaces) {
+    EXPECT_NO_THROW(PmergeMe("3  5  9  7  4"));
 }
 
-TEST(PmergeMeBasicTest, TwoElements) {
-    PmergeMe sorter;
-    int input[] = {5, 3};
-    std::vector<int> vec(input, input + 2);
+TEST(PmergeMeInputTest, NegativeNumber) {
+    EXPECT_THROW(PmergeMe("-1 2 3"), std::exception);
+}
 
-    std::vector<int> result = sorter.sortVector(vec);
+TEST(PmergeMeInputTest, NegativeInMiddle) {
+    EXPECT_THROW(PmergeMe("3 -5 9 7 4"), std::exception);
+}
 
-    EXPECT_EQ(result[0], 3);
-    EXPECT_EQ(result[1], 5);
+TEST(PmergeMeInputTest, InvalidCharacters) {
+    EXPECT_THROW(PmergeMe("abc"), std::exception);
+    EXPECT_THROW(PmergeMe("1 2 abc 4"), std::exception);
+}
+
+TEST(PmergeMeInputTest, SpecialCharacters) {
+    EXPECT_THROW(PmergeMe("1 2 + 3"), std::exception);
+    EXPECT_THROW(PmergeMe("1,2,3"), std::exception);
+}
+
+TEST(PmergeMeInputTest, EmptyInput) {
+    EXPECT_THROW(PmergeMe(""), std::exception);
+}
+
+TEST(PmergeMeInputTest, WhitespaceOnly) {
+    EXPECT_THROW(PmergeMe("   "), std::exception);
 }
 
 // ============================================
-// Deque Tests (Second Container)
+// Sorting Tests (via sortManager)
 // ============================================
 
-TEST(PmergeMeDequeTest, BasicSort) {
-    PmergeMe sorter;
-    int input[] = {9, 1, 5, 3, 7};
-    std::deque<int> deq(input, input + 5);
-
-    std::deque<int> result = sorter.sortDeque(deq);
-
-    EXPECT_EQ(result[0], 1);
-    EXPECT_EQ(result[1], 3);
-    EXPECT_EQ(result[2], 5);
-    EXPECT_EQ(result[3], 7);
-    EXPECT_EQ(result[4], 9);
+TEST(PmergeMeSortTest, SubjectExample) {
+    PmergeMe pm("3 5 9 7 4");
+    EXPECT_NO_THROW(pm.sortManager());
 }
 
-TEST(PmergeMeDequeTest, MatchesVectorResult) {
-    PmergeMe sorter;
-    int input[] = {8, 2, 6, 4, 10};
+TEST(PmergeMeSortTest, AlreadySorted) {
+    PmergeMe pm("1 2 3 4 5");
+    EXPECT_NO_THROW(pm.sortManager());
+}
 
-    std::vector<int> vec(input, input + 5);
-    std::deque<int> deq(input, input + 5);
+TEST(PmergeMeSortTest, ReverseSorted) {
+    PmergeMe pm("5 4 3 2 1");
+    EXPECT_NO_THROW(pm.sortManager());
+}
 
-    std::vector<int> vecResult = sorter.sortVector(vec);
-    std::deque<int> deqResult = sorter.sortDeque(deq);
+TEST(PmergeMeSortTest, SingleElement) {
+    PmergeMe pm("42");
+    EXPECT_NO_THROW(pm.sortManager());
+}
 
-    for (size_t i = 0; i < 5; i++)
-        EXPECT_EQ(vecResult[i], deqResult[i]);
+TEST(PmergeMeSortTest, TwoElements) {
+    PmergeMe pm("5 3");
+    EXPECT_NO_THROW(pm.sortManager());
+}
+
+TEST(PmergeMeSortTest, ThreeElements) {
+    PmergeMe pm("9 1 5");
+    EXPECT_NO_THROW(pm.sortManager());
+}
+
+TEST(PmergeMeSortTest, Duplicates) {
+    PmergeMe pm("5 3 5 1 3");
+    EXPECT_NO_THROW(pm.sortManager());
+}
+
+TEST(PmergeMeSortTest, AllSameValues) {
+    PmergeMe pm("7 7 7 7 7");
+    EXPECT_NO_THROW(pm.sortManager());
+}
+
+TEST(PmergeMeSortTest, OddCount) {
+    PmergeMe pm("8 4 1 6 3 9 2 7 5");
+    EXPECT_NO_THROW(pm.sortManager());
+}
+
+TEST(PmergeMeSortTest, EvenCount) {
+    PmergeMe pm("8 4 1 6 3 9 2 7");
+    EXPECT_NO_THROW(pm.sortManager());
 }
 
 // ============================================
-// Large Input Tests (3000+ elements)
+// Large Input Tests
 // ============================================
 
 TEST(PmergeMeLargeTest, ThreeThousandElements) {
-    PmergeMe sorter;
-    std::vector<int> vec;
-
-    // Generate 3000 random-ish numbers
-    for (int i = 3000; i > 0; i--)
-        vec.push_back(i);
-
-    std::vector<int> result = sorter.sortVector(vec);
-
-    // Verify sorted
-    for (size_t i = 1; i < result.size(); i++)
-        EXPECT_LE(result[i - 1], result[i]);
+    std::ostringstream oss;
+    for (int i = 3000; i > 0; i--) {
+        if (i < 3000)
+            oss << " ";
+        oss << i;
+    }
+    PmergeMe pm(oss.str());
+    EXPECT_NO_THROW(pm.sortManager());
 }
 
 TEST(PmergeMeLargeTest, FiveThousandElements) {
-    PmergeMe sorter;
-    std::vector<int> vec;
+    std::ostringstream oss;
+    for (int i = 5000; i > 0; i--) {
+        if (i < 5000)
+            oss << " ";
+        oss << i;
+    }
+    PmergeMe pm(oss.str());
+    EXPECT_NO_THROW(pm.sortManager());
+}
 
-    for (int i = 5000; i > 0; i--)
-        vec.push_back(i);
-
-    std::vector<int> result = sorter.sortVector(vec);
-
-    EXPECT_EQ(result.size(), 5000u);
-    for (size_t i = 1; i < result.size(); i++)
-        EXPECT_LE(result[i - 1], result[i]);
+TEST(PmergeMeLargeTest, ThreeThousandWithDuplicates) {
+    std::ostringstream oss;
+    for (int i = 0; i < 3000; i++) {
+        if (i > 0)
+            oss << " ";
+        oss << (i % 500);
+    }
+    PmergeMe pm(oss.str());
+    EXPECT_NO_THROW(pm.sortManager());
 }
 
 // ============================================
-// Error Handling Tests
+// Sorted Output Verification Tests
 // ============================================
 
-TEST(PmergeMeErrorTest, NegativeNumbers) {
-    PmergeMe sorter;
-    // Should reject negative numbers
-    EXPECT_THROW(sorter.parseInput("-1 2 3"), std::exception);
+TEST(PmergeMeVerifyTest, VectorIsSorted) {
+    PmergeMe pm("3 5 9 7 4");
+    pm.sortManager();
+    const std::vector<int>& vec = pm.getVector();
+    for (size_t i = 1; i < vec.size(); i++)
+        EXPECT_LE(vec[i - 1], vec[i]);
 }
 
-TEST(PmergeMeErrorTest, InvalidInput) {
-    PmergeMe sorter;
-    EXPECT_THROW(sorter.parseInput("abc"), std::exception);
-    EXPECT_THROW(sorter.parseInput("1 2 abc 4"), std::exception);
+TEST(PmergeMeVerifyTest, DequeIsSorted) {
+    PmergeMe pm("3 5 9 7 4");
+    pm.sortManager();
+    const std::deque<int>& deq = pm.getDeque();
+    for (size_t i = 1; i < deq.size(); i++)
+        EXPECT_LE(deq[i - 1], deq[i]);
 }
 
-TEST(PmergeMeErrorTest, EmptyInput) {
-    PmergeMe sorter;
-    EXPECT_THROW(sorter.parseInput(""), std::exception);
-}
-
-// ============================================
-// Verification Tests
-// ============================================
-
-TEST(PmergeMeVerifyTest, ResultIsSorted) {
-    PmergeMe sorter;
-    int input[] = {42, 17, 89, 3, 56, 12, 78, 34, 91, 25};
-    std::vector<int> vec(input, input + 10);
-
-    std::vector<int> result = sorter.sortVector(vec);
-
-    for (size_t i = 1; i < result.size(); i++)
-        EXPECT_LE(result[i - 1], result[i]);
+TEST(PmergeMeVerifyTest, VectorAndDequeMatch) {
+    PmergeMe pm("8 4 1 6 3 9 2 7 5");
+    pm.sortManager();
+    const std::vector<int>& vec = pm.getVector();
+    const std::deque<int>& deq = pm.getDeque();
+    EXPECT_EQ(vec.size(), deq.size());
+    for (size_t i = 0; i < vec.size(); i++)
+        EXPECT_EQ(vec[i], deq[i]);
 }
 
 TEST(PmergeMeVerifyTest, PreservesAllElements) {
-    PmergeMe sorter;
-    int input[] = {5, 3, 8, 1, 9};
-    std::vector<int> vec(input, input + 5);
-
-    std::vector<int> result = sorter.sortVector(vec);
-
-    EXPECT_EQ(result.size(), vec.size());
-    // Sum should be preserved
-    int sumBefore = 0, sumAfter = 0;
-    for (size_t i = 0; i < vec.size(); i++) sumBefore += vec[i];
-    for (size_t i = 0; i < result.size(); i++) sumAfter += result[i];
-    EXPECT_EQ(sumBefore, sumAfter);
+    PmergeMe pm("5 3 8 1 9");
+    pm.sortManager();
+    const std::vector<int>& vec = pm.getVector();
+    EXPECT_EQ(vec.size(), 5u);
+    int sum = 0;
+    for (size_t i = 0; i < vec.size(); i++)
+        sum += vec[i];
+    EXPECT_EQ(sum, 5 + 3 + 8 + 1 + 9);
 }
 
-// ============================================
-// Orthodox Canonical Form Tests
-// ============================================
-
-TEST(PmergeMeOCFTest, CopyConstructor) {
-    PmergeMe original;
-    PmergeMe copy(original);
-    // Should compile and work
+TEST(PmergeMeVerifyTest, ReverseSortedIsSorted) {
+    PmergeMe pm("5 4 3 2 1");
+    pm.sortManager();
+    const std::vector<int>& vec = pm.getVector();
+    for (size_t i = 0; i < vec.size(); i++)
+        EXPECT_EQ(vec[i], static_cast<int>(i + 1));
 }
 
-TEST(PmergeMeOCFTest, AssignmentOperator) {
-    PmergeMe a;
-    PmergeMe b;
-    b = a;
-    // Should compile and work
+TEST(PmergeMeVerifyTest, DuplicatesAreSorted) {
+    PmergeMe pm("5 3 5 1 3");
+    pm.sortManager();
+    const std::vector<int>& vec = pm.getVector();
+    for (size_t i = 1; i < vec.size(); i++)
+        EXPECT_LE(vec[i - 1], vec[i]);
 }
 
-// ============================================
-// Timing Comparison (manual verification)
-// ============================================
-
-TEST(PmergeMeTimingTest, BothContainersComplete) {
-    PmergeMe sorter;
-    std::vector<int> vec;
-    std::deque<int> deq;
-
-    for (int i = 1000; i > 0; i--) {
-        vec.push_back(i);
-        deq.push_back(i);
+TEST(PmergeMeVerifyTest, LargeInputIsSorted) {
+    std::ostringstream oss;
+    for (int i = 3000; i > 0; i--) {
+        if (i < 3000)
+            oss << " ";
+        oss << i;
     }
-
-    std::vector<int> vecResult = sorter.sortVector(vec);
-    std::deque<int> deqResult = sorter.sortDeque(deq);
-
-    // Both should produce sorted output
-    EXPECT_EQ(vecResult.size(), 1000u);
-    EXPECT_EQ(deqResult.size(), 1000u);
+    PmergeMe pm(oss.str());
+    pm.sortManager();
+    const std::vector<int>& vec = pm.getVector();
+    EXPECT_EQ(vec.size(), 3000u);
+    for (size_t i = 1; i < vec.size(); i++)
+        EXPECT_LE(vec[i - 1], vec[i]);
 }
