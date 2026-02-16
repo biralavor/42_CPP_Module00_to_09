@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:04:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/16 15:41:14 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/16 16:54:40 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,15 +132,11 @@ Container PmergeMe::startSorting(Container &containerType) {
     if (containerType.size() <= 1)
         return containerType;
 
-    // Step 1: Handle straggler (odd element out)
     bool hasStraggler = (containerType.size() % 2 != 0);
     int straggler = 0;
     if (hasStraggler)
         straggler = containerType.back();
 
-    // Step 2: Pair adjacent elements, compare each pair
-    // Winner = larger element (recursively sorted)
-    // Loser = smaller element (inserted later)
     Container winners;
     Container losers;
     std::vector<std::pair<int, int> > pairs;
@@ -159,11 +155,17 @@ Container PmergeMe::startSorting(Container &containerType) {
         }
     }
 
-    // Step 3: Recursively sort winners
     Container sortedWinners = this->startSorting(winners);
-
-    // Step 4: Reconstruct losers to match sorted winners order
     Container sortedLosers;
+    this->reorderLosers(sortedWinners, pairs, sortedLosers);
+    return this->buildMainChain(sortedWinners, sortedLosers,
+                                hasStraggler, straggler);
+}
+
+template <typename Container>
+void PmergeMe::reorderLosers(const Container &sortedWinners,
+                             const std::vector<std::pair<int, int> > &pairs,
+                             Container &sortedLosers) {
     std::vector<std::pair<int, int> > pairsCopy(pairs.begin(), pairs.end());
     for (size_t i = 0; i < sortedWinners.size(); i++) {
         for (size_t j = 0; j < pairsCopy.size(); j++) {
@@ -174,16 +176,18 @@ Container PmergeMe::startSorting(Container &containerType) {
             }
         }
     }
+}
 
-    // Step 5: Build main chain
-    // sortedLosers[0] < sortedWinners[0], so it goes first
+template <typename Container>
+Container PmergeMe::buildMainChain(const Container &sortedWinners,
+                                   const Container &sortedLosers,
+                                   bool hasStraggler, int straggler) {
     Container mainChain;
     mainChain.push_back(sortedLosers[0]);
     for (size_t i = 0; i < sortedWinners.size(); i++)
         mainChain.push_back(sortedWinners[i]);
 
-    // Step 6: Insert remaining losers via binary search in Jacobsthal order
-    std::vector<size_t> insertOrder = PmergeMe::getJacobsthalOrder(sortedLosers.size());
+    std::vector<size_t> insertOrder = this->getJacobsthalOrder(sortedLosers.size());
     for (size_t i = 0; i < insertOrder.size(); i++) {
         size_t idx = insertOrder[i];
         if (idx >= sortedLosers.size())
@@ -194,13 +198,11 @@ Container PmergeMe::startSorting(Container &containerType) {
         mainChain.insert(pos, value);
     }
 
-    // Step 7: Insert straggler via binary search
     if (hasStraggler) {
         typename Container::iterator pos = std::lower_bound(
             mainChain.begin(), mainChain.end(), straggler);
         mainChain.insert(pos, straggler);
     }
-
     return mainChain;
 }
 
