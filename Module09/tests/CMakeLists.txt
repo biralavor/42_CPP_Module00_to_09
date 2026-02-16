@@ -18,9 +18,9 @@ target_link_libraries(TestModule09Ex00 GTest::gtest_main)
 target_include_directories(TestModule09Ex00 PRIVATE ../ex00/headers)
 
 # ex01 - RPN
-# add_executable(TestModule09Ex01 TestModule09Ex01.cpp ../ex01/src/RPN.cpp)
-# target_link_libraries(TestModule09Ex01 GTest::gtest_main)
-# target_include_directories(TestModule09Ex01 PRIVATE ../ex01/headers)
+add_executable(TestModule09Ex01 TestModule09Ex01.cpp ../ex01/src/RPN.cpp ../ex01/src/utils.cpp)
+target_link_libraries(TestModule09Ex01 GTest::gtest_main)
+target_include_directories(TestModule09Ex01 PRIVATE ../ex01/headers)
 
 # ex02 - PmergeMe
 # add_executable(TestModule09Ex02 TestModule09Ex02.cpp ../ex02/src/PmergeMe.cpp)
@@ -29,5 +29,5 @@ target_include_directories(TestModule09Ex00 PRIVATE ../ex00/headers)
 
 include(GoogleTest)
 gtest_discover_tests(TestModule09Ex00)
-# gtest_discover_tests(TestModule09Ex01)
+gtest_discover_tests(TestModule09Ex01)
 # gtest_discover_tests(TestModule09Ex02)
