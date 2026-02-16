@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 22:35:06 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/15 16:23:21 by umeneses         ###   ########.fr       */
+/*   Created: 2026/02/15 17:16:52 by umeneses          #+#    #+#             */
+/*   Updated: 2026/02/15 22:41:29 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#pragma once
+#include <string>
 
-int main(int argc, char **argv) {
-  if (argc != 2) {
-    std::cerr << "Error. Usage: " << argv[0] << " <input_file>" << std::endl;
-    return 1;
-  }
-
-  BitcoinExchange exchange;
-  try {
-    exchange.processInput(argv[1]);
-  } catch (const std::exception &e) {
-    std::cerr << "Error: " << e.what() << std::endl;
-  }
-  return 0;
-}
+bool isDoubleDigit(const std::string &expression);
+bool isOperator(char c);
+bool areOperationsValid(const std::string &expression, char &badChar);
+bool areTotalOperationsValid(const std::string &expression);
