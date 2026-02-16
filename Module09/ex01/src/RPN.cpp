@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:14:29 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/15 22:37:08 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/15 23:26:53 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int RPN::executeOperation(const int number1, const int number2, const char opera
         case '*':
             return number1 * number2;
         case '/':
-            if (number1 == 0 || number2 == 0)
+            if (number2 == 0)
                 throw std::runtime_error("Division by zero is not allowed.");
             return number1 / number2;
         default:
@@ -68,9 +68,11 @@ int RPN::evaluate() {
     std::string::iterator iter = this->_userInput.begin();
     std::size_t idx = 0;
     while (idx < this->_userInput.size()) {
-        if(std::isdigit(*iter))
+        if (std::isdigit(*iter))
             this->_stack.push(*iter - '0');
         else if (isOperator(*iter) && this->_userInput.size() > 1) {
+            if (this->_stack.size() < 2)
+                throw std::runtime_error("Not enough operands for operator.");
             int number2 = this->_stack.top();
             this->_stack.pop();
             int number1 = this->_stack.top();
@@ -81,5 +83,7 @@ int RPN::evaluate() {
         idx++;
         iter++;
     }
+    if (this->_stack.empty())
+        throw std::runtime_error("Invalid expression.");
     return this->_stack.top();
 }

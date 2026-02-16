@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 17:16:02 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/15 23:00:27 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/15 23:26:39 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool isOperator(char c) {
 }
 
 bool areOperationsValid(const std::string &expression, char &badChar) {
-    for(size_t idx = 0; idx < expression.size(); idx++) {
+    for (size_t idx = 0; idx < expression.size(); idx++) {
         if (std::isdigit(expression[idx]) || std::isspace(expression[idx]))
             continue;
         if (!isOperator(expression[idx])) {

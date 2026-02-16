@@ -201,6 +201,11 @@ TEST(RPNErrorTest, TooManyOperands) {
     EXPECT_THROW(RPN rpn("1 2 3 +"), std::exception);
 }
 
+TEST(RPNErrorTest, OperatorBeforeOperands) {
+    RPN rpn("+ 1 2");
+    EXPECT_THROW(rpn.evaluate(), std::exception);
+}
+
 TEST(RPNErrorTest, DivisionByZero) {
     RPN rpn("5 0 /");
     EXPECT_THROW(rpn.evaluate(), std::exception);
@@ -222,5 +227,10 @@ TEST(RPNEdgeTest, NegativeResult) {
 
 TEST(RPNEdgeTest, ZeroMultiplication) {
     RPN rpn("0 5 *");
+    EXPECT_EQ(rpn.evaluate(), 0);
+}
+
+TEST(RPNEdgeTest, ZeroDividedByNumber) {
+    RPN rpn("0 5 /");
     EXPECT_EQ(rpn.evaluate(), 0);
 }
