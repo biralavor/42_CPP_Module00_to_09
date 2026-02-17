@@ -6,11 +6,12 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 20:31:10 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/15 12:57:05 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:55:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.hpp"
+#include <cctype>
 #include <cstdlib>
 #include <iostream>
 
