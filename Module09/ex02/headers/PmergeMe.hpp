@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:36 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/17 16:39:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:29:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 #include <stdexcept>
 #include <cstdlib>
 #include <ctime>
+#include <sys/time.h>
 #include <iomanip>
 #include <algorithm>
 #include <utility>
 
-#define FLOAT_PRECISION 7
+#define FLOAT_PRECISION 2
 
 class PmergeMe {
     private:
@@ -54,7 +55,7 @@ class PmergeMe {
 
         template <typename Container>
         void printSort(const std::string title, const Container &containerType) const;
-
+        
         static std::vector<size_t> getJacobsthalOrder(size_t pendingCount);
 
         void displayVectorChronometer() const;

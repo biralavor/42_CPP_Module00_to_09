@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:04:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/17 17:03:28 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:17:25 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,21 +214,23 @@ Container PmergeMe::buildMainChain(const Container &sortedWinners,
 
 
 void PmergeMe::sortManager() {
+    struct timeval start, end;
+    
     this->printSort("Before : ", this->_vec);
 
-    std::clock_t vectorStart = std::clock();
+    gettimeofday(&start, NULL);
     this->_vec = this->startSorting(this->_vec);
-    std::clock_t vectorEnd = std::clock();
+    gettimeofday(&end, NULL);
+    this->_vectorTime = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec);
     
-    std::clock_t dequeStart = std::clock();
+    gettimeofday(&start, NULL);
     this->_deq = this->startSorting(this->_deq);
-    std::clock_t dequeEnd = std::clock();
+    gettimeofday(&end, NULL);
+    this->_dequeTime = (end.tv_sec - start.tv_sec) * 1000000.0 + (end.tv_usec - start.tv_usec);
     
     this->printSort("After  : ", this->_deq);
     
-    this->_vectorTime = static_cast<double>(vectorEnd - vectorStart) / CLOCKS_PER_SEC;
     this->displayVectorChronometer();
-    this->_dequeTime = static_cast<double>(dequeEnd - dequeStart) / CLOCKS_PER_SEC;
     this->displayDequeChronometer();
 }
 
