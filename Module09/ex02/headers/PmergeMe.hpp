@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:36 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/17 13:11:32 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/17 16:39:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ class PmergeMe {
 
         static std::vector<size_t> getJacobsthalOrder(size_t pendingCount);
 
-        void displayVectorCronometer() const;
-        void displayDequeCronometer() const;
+        void displayVectorChronometer() const;
+        void displayDequeChronometer() const;
     
         public:
         PmergeMe(const std::string &input);

@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:04:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/17 13:11:19 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:00:12 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,14 @@ void PmergeMe::printSort(const std::string title, const Container &containerType
     std::cout << std::endl;
 }
 
-void PmergeMe::displayVectorCronometer() const {
+void PmergeMe::displayVectorChronometer() const {
     std::cout << "Time to process a range of " << this->_vec.size()
             << " elements with std::vector => "
             << std::fixed << std::setprecision(FLOAT_PRECISION)
             << this->_vectorTime << " us" << std::endl;
 }
 
-void PmergeMe::displayDequeCronometer() const {
+void PmergeMe::displayDequeChronometer() const {
     std::cout << "Time to process a range of " << this->_deq.size()
             << " elements with std::deque  => "
             << std::fixed << std::setprecision(FLOAT_PRECISION)
@@ -121,7 +121,7 @@ std::vector<size_t> PmergeMe::getJacobsthalOrder(size_t pendingCount) {
             upper = pendingCount;
         if (lower > pendingCount)
             break;
-        for (size_t i = upper; i >= lower; i--)
+        for (size_t i = upper; i >= lower && i > 0; i--)
             order.push_back(i - 1);
     }
     return order;
@@ -190,6 +190,8 @@ Container PmergeMe::buildMainChain(const Container &sortedWinners,
     std::vector<size_t> insertOrder = this->getJacobsthalOrder(sortedLosers.size());
     for (size_t i = 0; i < insertOrder.size(); i++) {
         size_t idx = insertOrder[i];
+        if (idx == 0)
+            continue;
         if (idx >= sortedLosers.size())
             continue;
         int value = sortedLosers[idx];
@@ -221,9 +223,9 @@ void PmergeMe::sortManager() {
     this->printSort("After  : ", this->_deq);
     
     this->_vectorTime = static_cast<double>(vectorEnd - vectorStart) / CLOCKS_PER_SEC;
-    this->displayVectorCronometer();
+    this->displayVectorChronometer();
     this->_dequeTime = static_cast<double>(dequeEnd - dequeStart) / CLOCKS_PER_SEC;
-    this->displayDequeCronometer();
+    this->displayDequeChronometer();
 }
 
 const std::vector<int>& PmergeMe::getVector() const { return this->_vec; }
