@@ -6,11 +6,11 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:04:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/16 16:54:40 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:11:19 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-PmergeMe::PmergeMe(std::string input) : 
+PmergeMe::PmergeMe(const std::string &input) : 
     _userInput(input), _vec(), _deq(), _vectorTime(0), _dequeTime(0) {
     this->inputValidation(input);
     this->inputParser(input);

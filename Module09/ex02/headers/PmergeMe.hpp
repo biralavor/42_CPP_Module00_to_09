@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:02:36 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/16 16:46:44 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/17 13:11:32 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ class PmergeMe {
         void displayDequeCronometer() const;
     
         public:
-        PmergeMe(std::string input);
+        PmergeMe(const std::string &input);
         ~PmergeMe();
         
         void sortManager();
