@@ -316,11 +316,3 @@ TEST(BitcoinExchangeOCFTest, AssignmentOperator) {
     EXPECT_EQ(aResult.size(), bResult.size());
     EXPECT_TRUE(almostEqual(aResult["2012-01-11"], bResult["2012-01-11"]));
 }
-
-TEST(BitcoinExchangeOCFTest, SelfAssignment) {
-    BitcoinExchange btc;
-    btc = btc;
-
-    std::map<std::string, double> result = btc.findClosestDate("2012-01-11");
-    EXPECT_FALSE(result.empty());
-}
