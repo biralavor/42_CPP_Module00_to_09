@@ -18,7 +18,7 @@
       <img src="https://img.shields.io/badge/Module%2005-100%25-brightgreen"><br>
       <img src="https://img.shields.io/badge/Module%2006-100%25-brightgreen"><br>
       <img src="https://img.shields.io/badge/Module%2007-100%25-brightgreen"><br>
-      <img src="https://img.shields.io/badge/Module%2008-Pending-lightgrey"><br>
+      <img src="https://img.shields.io/badge/Module%2008-100%25-brightgreen"><br>
       <img src="https://img.shields.io/badge/Module%2009-Pending-lightgrey">
     </td>
   </tr>
