@@ -22,12 +22,13 @@ add_executable(TestModule09Ex01 TestModule09Ex01.cpp ../ex01/src/RPN.cpp ../ex01
 target_link_libraries(TestModule09Ex01 GTest::gtest_main)
 target_include_directories(TestModule09Ex01 PRIVATE ../ex01/headers)
 
-# ex02 - PmergeMe
-# add_executable(TestModule09Ex02 TestModule09Ex02.cpp ../ex02/src/PmergeMe.cpp)
-# target_link_libraries(TestModule09Ex02 GTest::gtest_main)
-# target_include_directories(TestModule09Ex02 PRIVATE ../ex02/headers)
+# ex02 - PmergeMe (all code in .tpp, no separate .cpp needed)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/../ex02/data DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/..)
+add_executable(TestModule09Ex02 TestModule09Ex02.cpp)
+target_link_libraries(TestModule09Ex02 GTest::gtest_main)
+target_include_directories(TestModule09Ex02 PRIVATE ../ex02/headers)
 
 include(GoogleTest)
-gtest_discover_tests(TestModule09Ex00)
-gtest_discover_tests(TestModule09Ex01)
-# gtest_discover_tests(TestModule09Ex02)
+gtest_discover_tests(TestModule09Ex00 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/..)
+gtest_discover_tests(TestModule09Ex01 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/..)
+gtest_discover_tests(TestModule09Ex02 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/..)
