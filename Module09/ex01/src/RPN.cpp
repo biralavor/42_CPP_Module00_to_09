@@ -6,12 +6,13 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 16:14:29 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/15 23:26:53 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:55:36 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 #include "utils.hpp"
+#include <cctype>
 
 RPN::RPN() : _userInput(""), _stack() {}
 
