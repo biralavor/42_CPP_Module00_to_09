@@ -6,7 +6,7 @@
 /*   By: umeneses <umeneses@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/16 10:04:46 by umeneses          #+#    #+#             */
-/*   Updated: 2026/02/17 17:00:12 by umeneses         ###   ########.fr       */
+/*   Updated: 2026/02/17 17:03:28 by umeneses         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ void PmergeMe::inputParser(const std::string &input) {
     while (std::getline(iss, token, ' ')) {
         if (token.empty())
             continue;
-        int num = std::atoi(token.c_str());
+        std::istringstream tokenStream(token);
+        int num;
+        if (!(tokenStream >> num || num < 0 || !tokenStream.eof())) {
+            throw std::invalid_argument("Invalid number in input.");
+        }
         this->_vec.push_back(num);
         this->_deq.push_back(num);
     }
