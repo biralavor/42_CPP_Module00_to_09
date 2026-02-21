@@ -19,7 +19,7 @@
       <img src="https://img.shields.io/badge/Module%2006-100%25-brightgreen"><br>
       <img src="https://img.shields.io/badge/Module%2007-100%25-brightgreen"><br>
       <img src="https://img.shields.io/badge/Module%2008-100%25-brightgreen"><br>
-      <img src="https://img.shields.io/badge/Module%2009-Pending-lightgrey">
+      <img src="https://img.shields.io/badge/Module%2009-100%25-brightgreen">
     </td>
   </tr>
 </table>
@@ -36,10 +36,11 @@
 > - Module 06 -> C++ casts (static_cast<>, dynamic_cast<>, const_cast<>, reinterpret_cast<>)
 > - Module 07 -> C++ templates
 > - Module 08 -> Templated containers (vector, map, stack, etc), iterators, algorithms
-> - Module 09 -> STL (Standard Template Library) algorithms and function objects
-https://cplusplus.com/doc/tutorial
+> - Module 09 -> STL (Standard Template Library) algorithms and function objects, to get practice with std::map, std::stack, std::vector, and  std::deque
 
-https://www.learncpp.com/
+## Resources
+- https://cplusplus.com/doc/tutorial
+- https://www.learncpp.com/
 
 > [!NOTE]
 > This project has a few tests with Google Tests <br>
